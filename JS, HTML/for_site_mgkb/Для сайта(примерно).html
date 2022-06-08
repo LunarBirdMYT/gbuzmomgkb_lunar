@@ -1,0 +1,1922 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Проверка полиса</title>
+  </head>
+  <body>
+    <table border="0" class="tab" style="font-size: 12px; margin: 10px 0px 20px; border: 1px solid #000000; width: 1200px; color: #222222; font-family: arial, helvetica, sans-serif; background-color: #ffffff; border-collapse: collapse; height: 200px;">
+        <thead style="text-align: center; border-left: 1px solid #000000; border-collapse: collapse;">
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <th style="border-left: 1px solid #000000; border-collapse: collapse; padding: 7px 4px 7px 15px; height: 28px; width: 47px;">
+        <span style="font-size: 18pt">Код региона</span>
+        </th>
+        <th style="border-left: 1px solid #000000; border-collapse: collapse; padding: 7px 4px 7px 15px; height: 28px; width: 117px;">
+        <span style="font-size: 18pt">Регион</span>
+        </th>
+        <th style="border-left: 1px solid #000000; border-collapse: collapse; padding: 7px 4px 7px 15px; height: 28px; width: 117px;">
+        <span style="font-size: 18pt">Необходимые данные для проверки</span>
+        </th>
+        <th style="border-left: 1px solid #000000; border-collapse: collapse; padding: 7px 4px 7px 15px; height: 28px; width: 147px;">
+        <span style="font-size: 18pt">Возвращаемые данные после проверки</span>
+        </th>
+        <th style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">Ресурс для проверки полиса</span>
+        </th>
+        </tr>
+        </thead>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <input placeholder="Поиск по коду" id="findCodeRegion" onkeyup="searchTableNumber()" type="text" maxlength="2">
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <input placeholder="Поиск по названию" id="findTitleRegion" onkeyup="searchTableTitle()" type="text" maxlength="70">
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        </td>
+        </tr>
+        <tbody id="myTable">
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">50</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Московская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.mofoms.ru/polis/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Московской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">77</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">г. Москва</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.mgfoms.ru/chastnye-lica/proverka-polisa" style="color: #27609b; text-decoration: none" target="_blank">Московский городской ФОМС</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">01</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Адыгея (Адыгея)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует на некоторую дату</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.arfoms.ru/search/sh_db.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Адыгея</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">02</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Башкортостан</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms-rb.ru/ru/node/4909" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Башкортостан</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">03</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Бурятия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>наименование МО</li>
+        <li>дата выдачи полиса</li>
+        <li>дата прикрепления к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfomsrb.ru/biznes" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Бурятия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">04</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Горный Алтай</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.tfomsra.ru/index.php?option=com_nomer_polis&Itemid=76" style="color: #27609b; text-decoration: none" target="_blank">Горно-Алтайский ТФОМС</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">05</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Дагестан</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия имя отчество + дата рождения, Документ или серия/номер полиса ОМС</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата начала действия</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.fomsrd.ru/service/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Дагестан</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">06</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Ингушетия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://rifoms.ru/informacionnoe-vzaimodeistvie/proverka-fakta-strahovanija.html" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Ингушетия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">07</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Кабардино-Балкарская Республика</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>26.01.22 Функционал не работает</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://checkpolicy.tfomskbr.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Кабардино-Балкарской Республики</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">08</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Калмыкия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://kalmfoms.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Калмыкия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">09</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Карачаево-Черкесская Республика</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия имя + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 15pt;color: lightgrey">раздел в разработке</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://xn--09-7lchqdo.xn--p1ai/servisy-oms/proverit-oformlenie-ili-dejstvitel-nost-polisa-oms/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Карачаево-Черкесской Республики</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">10</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Карелия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 15pt;color: lightgrey">раздел в разработке</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://oms.karelia.ru/user_services/verification_service.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Карелия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">11</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Коми</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://komifoms.ru/index.php?option=com_content&view=article&id=69&Itemid=212" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Коми</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">12</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Мордовия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.tfomsrm.ru/change/check_policy.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Мордовия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">13</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Марий Эл</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.rfoms.mari-el.ru/services/identific/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Марий Эл</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">14</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Саха (Якутия)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия имя отчество + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.sakhaoms.ru/webpoisk/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Саха (Якутия)</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">15</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Северная Осетия - Алания</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://omsalania.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМC Республики Северная Осетия-Алания</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">16</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Татарстан</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.fomsrt.ru/index.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Татарстан</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">17</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Тыва</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.fomstuva.ru/index.php/ru/grazhdanam/obshchaya-informatsiya" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республика Тыва</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">18</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Удмуртская Республика</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.tfoms18.ru/services/poisk-polisa-ili-vremennogo-svidetelstva.html" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Удмуртской Республики</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">19</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Хакасия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.tfomsrh.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Республики Хакасия</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">20</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Чеченская Республика</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса, фамилия + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms-chr.ru/ActualPolis" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Чеченской Республики</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">21</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Чувашская Республика</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://chuvtfoms.ru/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0-%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8-%D0%BF%D0%BE%D0%BB%D0%B8%D1%81%D0%B0-%D0%BE%D0%BC%D1%81-%D0%BF%D0%BE-%D0%BD%D0%BE%D0%BC/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Чувашской Республики</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">22</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Алтайский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">26.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.tfoms22.ru/forp/proverka-polisa-oms.html" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Алтайского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">23</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Краснодарский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://kubanoms.ru/Polis/index.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Краснодарского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">24</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Красноярский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия, документ(серия/номер, дата выдачи)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.krasmed.ru/policy/check_policy.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Красноярского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">25</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Приморский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>поликлиника прикрепления</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.omspk.ru/check_insur/check.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Приморского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">26</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ставропольский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия + документ(серия, номер) или фамилия + серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfomssk.ru/servisy-oms/proverka-polisa/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ставропольского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">27</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Хабаровский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия + документ(серия, номер) или фамилия + серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>поликлиника прикрепления</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.khfoms.ru/services/polis_check/" style="color: #27609b; text-decoration: none" target="_blank">Хабаровский краевой ФОМС</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">28</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Амурская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.aofoms.ru/index.php?c=availPolicy" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Амурской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">29</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Архангельская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.arhofoms.ru/oms/rrz/rrzsearchsn.aspx" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Архангельской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">30</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Астраханская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://astfond.ru/uslugi/proverki-polisa/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Астраханской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">31</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Белгородская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.belfoms.ru/new_polis.htm" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Белгородской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">32</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Брянская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса, номер документа(паспорт РФ)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://тфомсбрк.рф/citizens/for-insured/verification-of-medical-insurance/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Брянской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">33</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Владимирская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.tfoms33.ru/policy-check" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Владимирской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">34</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Волгоградская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://volgatfoms.ru/check_pol_sp.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Волгоградской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">35</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Вологодская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://new.oms35.ru/temp_evidence" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Вологодской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">36</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Воронежская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.omsvrn.ru/check-doc-validity" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Воронежской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">37</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ивановская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms.ivanovo.ru/proverka-polisa-oms.html" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ивановской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">38</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Иркутская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.irkoms.ru/tfoms/polis" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Иркутской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">39</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Калининградская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса + фамилия</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms39.ru/checking/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Калининградской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">40</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Калужская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://oms-kaluga.ru/check-polis" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Калужской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">41</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Камчатский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса или ФИО</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Фамилия имя отчество</li>
+        <li>дата рождения</li>
+        <li>прикрепление к МО</li>
+        <li>дата выдачи полиса ОМС</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.kamtfoms.ru/servis_poiska_polisa_oms/poisk_po_nomeru_polisa_i_po_fio/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Камчатского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">42</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Кемеровская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://kemoms.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Кемеровской области - Кузбасса</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">43</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Кировская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.kotfoms.kirov.ru/?action=ssrv" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Кировской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">44</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Костромская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://oms44.ru/actpolis" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Костромской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">45</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Курганская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.ktfoms.orbitel.ru/index.php?page=41" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Курганской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">46</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Курская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://checkpolis.kurskoms.ru:8080/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Курской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">47</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ленинградская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.lofoms.spb.ru/check" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ленинградской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">48</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Липецкая область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.ofoms48.ru/users/znum.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Липецкой области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">49</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Магаданская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не работает</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms-magadan.ru/component/omssearch/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Магаданской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">51</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Мурманская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса или фамилия имя отчество + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.omsmurm.ru/Home/SearchPolicy?menuItem=9" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Мурманской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">52</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Нижегородская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.tfoms.nnov.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Нижегородской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">53</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Новгородская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfomsvn.ru/servis-proverki-gotovnosti-strahovogo-polisa-oms-edinogo-obrazca.html" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Новгородской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">54</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Новосибирская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.novofoms.ru/services/check_p.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Новосибирской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">55</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Омская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://omsomsk.ru/searchpolicies" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Омской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">56</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Оренбургская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.orenfoms.ru/feedback/policy/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Оренбургской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">57</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Орловская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса или паспорт(серия+номер) или СНИЛС</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.oreltfoms.ru/index.php/home/94-2012-12-03-10-55-10" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Орловской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">58</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Пензенская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса или паспорт(серия+номер)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>серия и номер паспорта</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.tfomspenza.ru/search.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Пензенской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">59</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Пермский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.pofoms.ru/Feedback/Pages/CheckOMS.aspx" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Пермского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">60</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Псковская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.ptfoms.ru/page/policy/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Псковской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">61</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ростовская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.rostov-tfoms.ru/services/pol-confirm" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ростовской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">62</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Рязанская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://new.tfoms-rzn.ru/services/check_polis/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Рязанской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">63</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Самарская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://samtfoms.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Самарской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">64</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Саратовская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.sartfoms.ru/appnet/checkpolise.aspx" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Саратовской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">65</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Сахалинская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>ИО+ДР </li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms-sakhalin.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Сахалинской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">66</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Свердловская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://oms66.ru/grazhdanam/proverka-aktualnosti-polisa/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Свердловской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">67</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Смоленская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://www.smolfoms.ru/polzovatelskie-servisy/proverit-deystvie-polisa-oms/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Смоленской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">68</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Тамбовская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tofoms.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Тамбовской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">69</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Тверская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://lk.tveroms.ru/Home/Services" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Тверской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">70</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Томская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>дата выдачи полиса</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.ttfoms.tomsk.ru/search/policy" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Томской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">71</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Тульская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия + Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.omstula.ru/zastrah/omc_policy/verify/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Тульской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">72</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Тюменская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfoms.ru/lpu/checkpolis/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Тюменской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">73</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ульяновская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса или фамилия имя отчество + дата рождения</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>фамилия имя отчество + дата рождения</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://web.ultfoms.ru/chpolis.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ульяновской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">74</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Челябинская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия + Серия/номер полиса или Фамилия + паспорт(серия и номер)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>прикрепление к МО</li>
+        <li>ФИО участкового врача</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://foms74.ru/page/policy_search" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Челябинской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">75</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Забайкальский край</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Пол + Дата рождения + серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи полиса</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://zabtfoms.ru/register/findpolicy" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Забайкальского края</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">76</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ярославская область</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://yartfoms.ru/polis2.php" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ярославской области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">78</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">г. Санкт - Петербург</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Фамилия имя отчество + дата рождения + серия/номер полиса(или улица)</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://spboms.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Санкт-Петербурга</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">79</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Еврейская АО</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://tfomseao.ru/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Еврейской автономной области</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">82</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Республика Крым</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        <li>прикрепление к МО</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://tfomsrk.ru/proverka-polisa-oms/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Крым</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">83</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ненецкий автономный округ</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.webfoms.ru/insurance/index" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ямало-Ненецкого автономного округа</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">86</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Ханты-Мансийского автономного округа - Югры</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.ofoms.ru/policy-validate/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Ханты-Мансийского автономного округа - Югры</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">87</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Чукотский автономный округ</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Серия/номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <ul style="padding: 7px 4px 7px 15px; font-size: 15pt">
+        <li>Действует/не действует</li>
+        <li>наименование СМО</li>
+        <li>дата выдачи</li>
+        </ul>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://chtfoms.ru/" style="color: #27609b; text-decoration: none" target="_blank">Чукотский ТФОМС 
+        </a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">91</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Байконур</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Номер полиса</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 15pt;color: lightgrey">раздел в разработке</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="http://xn----9sb8ahqcp.xn--p1ai/" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС Байконура</a>
+        </span>
+        </td>
+        </tr>
+        <tr style="text-align: left; border: 1px solid #000000; border-collapse: collapse;">
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 47px;">
+        <span style="font-size: 18pt">92</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 18pt">Севастополь</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 117px;">
+        <span style="font-size: 15pt;color: salmon">27.01.22 функционал не реализован</span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt"></span>
+        </td>
+        <td style="padding: 7px 4px 7px 15px; color: #47433f; border-collapse: collapse; border: 1px solid #000000; height: 14px; width: 147px;">
+        <span style="font-size: 18pt">
+        <a href="https://www.sevtfoms.ru/index.php/reestry" style="color: #27609b; text-decoration: none" target="_blank">ТФОМС г.Севостополь</a>
+        </span>
+        </td>
+        </tr>
+        </tbody>
+        </table>
+        <script>
+        function searchTableNumber() {
+            var input, filter, found, span, i, j;
+            input = document.getElementById("findCodeRegion");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("span");
+                for (j = 0; j < td.length; j++) {
+                    if (td[0].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    tr[i].style.display = "";
+                    found = false;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        function searchTableTitle() {
+            var input, filter, found, table, tr, td, i, j;
+            input = document.getElementById("findTitleRegion");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[1].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    tr[i].style.display = "";
+                    found = false;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        </script>
+             </body>
+</html>
