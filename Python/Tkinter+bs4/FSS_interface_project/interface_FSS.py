@@ -4,6 +4,8 @@ import os
 import sys
 from os import getcwd
 import fss_parsing
+import threading
+import time
 
 
 def resource_path(relative_path):
@@ -134,6 +136,31 @@ class App(tk.Tk):
             self.set_directory_for_save["text"] = "Выбрана"
             self.directory = directory
 
+    def final_text(self, thr, write_after_download: str):
+        while thr.is_alive():
+            self.message_in_downloading.insert(tk.INSERT, '.')
+            self.message_in_downloading.update()
+            time.sleep(2)
+        else:
+            self.message_in_downloading.insert(tk.INSERT, write_after_download)
+            self.message_in_downloading.update()
+
+    def x64_down(self, thr):
+        thr.join()
+        text = "\nСкачиваю версию для x64"
+        self.message_in_downloading.insert(tk.INSERT, text)
+        self.message_in_downloading.update()
+        # Первый поток скачивает на фоне, второй выводит точки
+        x64_thread = threading.Thread(target=self.fss_object.downoading_fss_64,
+                                      args=(self.directory, self.x64),
+                                      daemon=True)
+        # self.fss_object.downoading_fss_64(self.directory, self.x64)
+        x64_thread.start()
+        text_after = "\nЗагрузка версии х64 успешно завершена!"
+        final_text_thread = threading.Thread(target=self.final_text,
+                                             args=(x64_thread, text_after))
+        final_text_thread.start()
+
     def downloading(self):
         if self.x32 == '' and self.x64 == '':
             self.message_in_downloading = tk.Text(self,
@@ -155,33 +182,64 @@ class App(tk.Tk):
             self.message_in_downloading.update()
 
             if self.is_x32.get() and self.is_x64.get():
-                text = "\nСкачиваю версию для x32..."
+                """
+                Реализация механизма условной многопоточности здесь сводится к
+                трем потокам:
+                    1 - скачивает версию 32
+                    2 - ждет, пока звершится скачивание, чтобы вывести готово
+                    3 - ждет пока закончится 2-ой потом, чтобы запустить еще 2
+                        4 - скачивает версию 64
+                        5 - выводит информацию об успехе
+                """
+                text = "\nСкачиваю версию для x32"
                 self.message_in_downloading.insert(tk.INSERT, text)
                 self.message_in_downloading.update()
-                self.fss_object.downoading_fss_32(self.directory, self.x32)
-                text = "\nЗагрузка версии х32 успешно завершена!"
-                self.message_in_downloading.insert(tk.INSERT, text)
-                text = "\nСкачиваю версию для x64..."
-                self.message_in_downloading.insert(tk.INSERT, text)
-                self.message_in_downloading.update()
-                self.fss_object.downoading_fss_64(self.directory, self.x64)
-                text = "\nЗагрузка версии х64 успешно завершена!"
-                self.message_in_downloading.insert(tk.INSERT, text)
+                x32_thread = threading.Thread(target=self.fss_object.downoading_fss_32,
+                                              args=(self.directory, self.x32),
+                                              daemon=True)
+                # self.fss_object.downoading_fss_32(self.directory, self.x32)
+                x32_thread.start()
+                text_after = "\nЗагрузка версии х32 успешно завершена!"
+                final_text_thread_x32 = threading.Thread(target=self.final_text,
+                                                     args=(x32_thread, text_after),
+                                                     daemon=True)
+                final_text_thread_x32.start()
+                
+                # Создаем еще один поток, в котором создаются свои потоки
+                # чтобы отслеживать предыдущие и не перемешиваться
+                x64_thread = threading.Thread(target=self.x64_down,
+                                              args=(final_text_thread_x32,),
+                                              daemon=True)
+                x64_thread.start()
             elif self.is_x32.get():
-                text = "\nСкачиваю версию для x32..."
+                text = "\nСкачиваю версию для x32"
                 self.message_in_downloading.insert(tk.INSERT, text)
                 self.message_in_downloading.update()
-                self.fss_object.downoading_fss_32(self.directory, self.x32)
-                text = "\nЗагрузка версии х32 успешно завершена!"
-                self.message_in_downloading.insert(tk.INSERT, text)
+                x32_thread = threading.Thread(target=self.fss_object.downoading_fss_32,
+                                              args=(self.directory, self.x32),
+                                              daemon=True)
+                # self.fss_object.downoading_fss_32(self.directory, self.x32)
+                x32_thread.start()
+                text_after = "\nЗагрузка версии х32 успешно завершена!"
+                final_text_thread = threading.Thread(target=self.final_text,
+                                                     args=(x32_thread, text_after),
+                                                     daemon=True)
+                final_text_thread.start()
             elif self.is_x64.get():
-                text = "\nСкачиваю версию для x64..."
+                text = "\nСкачиваю версию для x64"
                 self.message_in_downloading.insert(tk.INSERT, text)
                 self.message_in_downloading.update()
-                self.fss_object.downoading_fss_64(self.directory, self.x64)
-                text = "\nЗагрузка версии х64 успешно завершена!"
-                self.message_in_downloading.insert(tk.INSERT, text)
-                self.message_in_downloading.update()
+                # Первый поток скачивает на фоне, второй выводит точки
+                x64_thread = threading.Thread(target=self.fss_object.downoading_fss_64,
+                                      args=(self.directory, self.x64),
+                                      daemon=True)
+                # self.fss_object.downoading_fss_64(self.directory, self.x64)
+                x64_thread.start()
+                text_after = "\nЗагрузка версии х64 успешно завершена!"
+                final_text_thread = threading.Thread(target=self.final_text,
+                                                     args=(x64_thread, text_after),
+                                                     daemon=True)
+                final_text_thread.start()
 
 
 if __name__ == "__main__":
